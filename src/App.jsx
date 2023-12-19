@@ -1,18 +1,20 @@
-import "./App.css";
-import { Engine, Render, World, Bodies, Body, Runner, Events } from "matter-js";
-import { FRUITS_BASE } from "./assets/javascript/fruits";
 import { useEffect, useRef, useState } from "react";
-import HelpModal from "./assets/javascript/helpModal.jsx";
-import ResultModal from "./assets/javascript/resultModal.jsx";
+import { Engine, Render, World, Bodies, Body, Runner, Events } from "matter-js";
+
+import { FRUITS_BASE } from "./assets/javascript/fruits";
+import HelpModal from "./assets/components/helpModal.jsx";
+import ResultModal from "./assets/components/resultModal.jsx";
 
 function App() {
   const containerRef = useRef();
   const canvasRef = useRef();
+
   const engineRef = useRef();
   const currentBodyRef = useRef();
-  const intervalRef = useRef();
-  const disableActionRef = useRef(false);
 
+  const intervalRef = useRef();
+  const intervalDisableActionRef = useRef();
+  const disableActionRef = useRef(false);
   const currentFruitRef = useRef();
 
   const [score, setScore] = useState(0);
@@ -37,9 +39,12 @@ function App() {
    * Add random new fruit
    */
   function addFruit() {
+    /**
     const index = Math.floor(Math.random() * 5);
+    /*/
     // test code
-    // const index = 8;
+    const index = 8;
+    /**/
     const fruit = FRUITS_BASE[index];
 
     const body = Bodies.circle(310, 90, fruit.radius, {
@@ -64,6 +69,7 @@ function App() {
     World.clear(engineRef.current.world, true);
     addFruit();
     setOpenResultModal(false);
+    setScore(0);
   }
 
   /**
@@ -165,7 +171,7 @@ function App() {
           currentBodyRef.current.isSleeping = false;
           disableActionRef.current = true;
 
-          setTimeout(() => {
+          intervalDisableActionRef.current = setTimeout(() => {
             addFruit();
             disableActionRef.current = false;
           }, 1000);
@@ -218,10 +224,11 @@ function App() {
           setScore((score) => score + (index + 1) * 10);
 
           if (index === 9) {
-            setTimeout(() => {
-              setGameClear(true);
-              setOpenResultModal(true);
-            }, 500);
+            clearInterval(intervalDisableActionRef.current);
+            disableActionRef.current = true;
+
+            setGameClear(true);
+            setOpenResultModal(true);
           }
         }
 
@@ -230,6 +237,9 @@ function App() {
           (collision.bodyA.name === "topLine" ||
             collision.bodyB.name === "topLine")
         ) {
+          clearInterval(intervalDisableActionRef.current);
+          disableActionRef.current = true;
+
           setGameClear(false);
           setOpenResultModal(true);
         }
@@ -245,10 +255,14 @@ function App() {
         <h1>Suika Game</h1>
         <h2>최고기록 : {highScore}</h2>
         <h2>점수 : {score}</h2>
-        <HelpModal gameRestart={gameRestart} />
+        <HelpModal
+          disableActionRef={disableActionRef}
+          gameRestart={gameRestart}
+        />
         <ResultModal
           openResultModal={openResultModal}
           setOpenResultModal={setOpenResultModal}
+          disableActionRef={disableActionRef}
           gameClear={gameClear}
           gameRestart={gameRestart}
         />

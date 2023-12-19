@@ -16,23 +16,42 @@ const style = {
   p: 4,
 };
 
-export default function HelpModal({ gameRestart }) {
+export default function HelpModal({ disableActionRef, gameRestart }) {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const helpModalBtn = React.useRef();
+
+  React.useEffect(() => {
+    if (open) {
+      disableActionRef.current = true;
+    } else {
+      disableActionRef.current = false;
+      helpModalBtn.current.blur();
+    }
+  }, [open]);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>도움말</Button>
+    <>
+      <Button
+        onClick={() => setOpen(true)}
+        disableFocusRipple={true}
+        ref={helpModalBtn}
+      >
+        도움말
+      </Button>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        disableEnforceFocus={true}
+        disableAutoFocus={true}
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Suika Game
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Suika Game은 <b>"작은 과일"</b>들을 합쳐서 <b>"큰 과일"</b>을 만드는
+            게임입니다.
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             왼쪽으로 과일 움직이기 : 왼쪽 방향키
@@ -42,11 +61,7 @@ export default function HelpModal({ gameRestart }) {
             과일 떨어뜨리기 : 스페이스바
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Suika Game은 <b>"작은 과일"</b>들을 합쳐서 <b>"큰 과일"</b>을 만드는
-            게임입니다.
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            개발자 : <a href="https://github.com/059590/suika-game">github</a>
+            <a href="https://github.com/059590/suika-game">Github Link</a>
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <Button onClick={() => setOpen(false)}>계속하기</Button>
@@ -61,14 +76,11 @@ export default function HelpModal({ gameRestart }) {
           </Typography>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
 
 HelpModal.propTypes = {
+  disableActionRef: PropTypes.object,
   gameRestart: PropTypes.func,
-};
-
-HelpModal.defaultProps = {
-  gameRestart: () => {},
 };
