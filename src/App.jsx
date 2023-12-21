@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Engine, Render, World, Bodies, Body, Runner, Events } from "matter-js";
 
 import { FRUITS_BASE } from "./assets/javascript/fruits";
-import HelpModal from "./assets/components/helpModal.jsx";
-import ResultModal from "./assets/components/resultModal.jsx";
+import GameDescriptionModal from "./assets/components/gameDescriptionModal.jsx";
+import GameResultModal from "./assets/components/gameResultModal.jsx";
 
 function App() {
   const containerRef = useRef();
@@ -21,8 +21,7 @@ function App() {
   const [highScore, setHighScore] = useState(
     localStorage.getItem("score") || 0
   );
-
-  const [openResultModal, setOpenResultModal] = useState(false);
+  const [openGameResultModal, setOpenGameResultModal] = useState(false);
   const [gameClear, setGameClear] = useState(false);
 
   /**
@@ -39,7 +38,7 @@ function App() {
    * Add random new fruit
    */
   function addFruit() {
-    /**
+    /**/
     const index = Math.floor(Math.random() * 5);
     /*/
     // test code
@@ -68,7 +67,7 @@ function App() {
   function gameRestart() {
     World.clear(engineRef.current.world, true);
     addFruit();
-    setOpenResultModal(false);
+    setOpenGameResultModal(false);
     setScore(0);
   }
 
@@ -228,7 +227,7 @@ function App() {
             disableActionRef.current = true;
 
             setGameClear(true);
-            setOpenResultModal(true);
+            setOpenGameResultModal(true);
           }
         }
 
@@ -241,7 +240,7 @@ function App() {
           disableActionRef.current = true;
 
           setGameClear(false);
-          setOpenResultModal(true);
+          setOpenGameResultModal(true);
         }
 
         return collision.bodyA.index === collision.bodyB.index;
@@ -251,17 +250,32 @@ function App() {
 
   return (
     <>
-      <header>
-        <h1>Suika Game</h1>
+      <header
+        style={{
+          width: "100%",
+          height: "60px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src="/base/10_watermelon.png"
+            alt="watermelon icon"
+            style={{ width: "45px", marginRight: "5px" }}
+          />
+          <h1>수박 게임</h1>
+        </div>
         <h2>최고기록 : {highScore}</h2>
         <h2>점수 : {score}</h2>
-        <HelpModal
+        <GameDescriptionModal
           disableActionRef={disableActionRef}
           gameRestart={gameRestart}
         />
-        <ResultModal
-          openResultModal={openResultModal}
-          setOpenResultModal={setOpenResultModal}
+        <GameResultModal
+          openResultModal={openGameResultModal}
+          setOpenResultModal={setOpenGameResultModal}
           disableActionRef={disableActionRef}
           gameClear={gameClear}
           gameRestart={gameRestart}

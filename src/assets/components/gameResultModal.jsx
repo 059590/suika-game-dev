@@ -1,25 +1,14 @@
-import { useEffect } from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+// import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 
 import confetti from "canvas-confetti";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "#F7F4C8",
-  border: "5px solid #E6B143",
-  p: 4,
-};
-
-export default function ResultModal({
+export default function GameResultModal({
   openResultModal,
   setOpenResultModal,
   disableActionRef,
@@ -72,7 +61,7 @@ export default function ResultModal({
   /**
    * Action upon game clearance
    */
-  useEffect(() => {
+  React.useEffect(() => {
     if (openResultModal && gameClear) {
       firework();
     } else {
@@ -88,13 +77,21 @@ export default function ResultModal({
       disableEnforceFocus={true}
       disableAutoFocus={true}
     >
-      <Box sx={style}>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Suika Game
-        </Typography>
-        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {gameClear ? "Clear" : "Fail"}
-        </Typography>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 400,
+          bgcolor: "#F7F4C8",
+          border: "5px solid #E6B143",
+          p: 4,
+        }}
+      >
+        <h2 style={gameClear ? { color: "green" } : { color: "red" }}>
+          {gameClear ? "🎉수박! 축하합니다!!~🎉" : "🥲수박! 실패...🥲"}
+        </h2>
         {gameClear && (
           <Button onClick={() => setOpenResultModal(false)}>계속하기</Button>
         )}
@@ -110,7 +107,7 @@ export default function ResultModal({
   );
 }
 
-ResultModal.propTypes = {
+GameResultModal.propTypes = {
   openResultModal: PropTypes.bool,
   setOpenResultModal: PropTypes.func,
   disableActionRef: PropTypes.object,
