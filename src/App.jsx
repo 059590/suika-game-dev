@@ -261,7 +261,7 @@ function App() {
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
-            src="/base/10_watermelon.png"
+            src="./base/10-watermelon.png"
             alt="watermelon icon"
             style={{ width: "45px", marginRight: "5px" }}
           />

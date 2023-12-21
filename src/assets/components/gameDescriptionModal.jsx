@@ -5,12 +5,16 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Link from "/icon/captive_portal_FILL0_wght400_GRAD0_opsz24.svg";
-import SpaceBar from "/icon/space_bar_FILL0_wght400_GRAD0_opsz24.svg";
-import ArrowLeft from "/icon/arrow_left_FILL0_wght400_GRAD0_opsz24.svg";
-import ArrowRight from "/icon/arrow_right_FILL0_wght400_GRAD0_opsz24.svg";
 
-export default function GameDescriptionModal({ disableActionRef, gameRestart }) {
+import Link from "/icon/captive-portal-FILL0-wght400-GRAD0-opsz24.svg";
+import SpaceBar from "/icon/space-bar-FILL0-wght400-GRAD0-opsz24.svg";
+import ArrowLeft from "/icon/arrow-left-FILL0-wght400-GRAD0-opsz24.svg";
+import ArrowRight from "/icon/arrow-right-FILL0-wght400-GRAD0-opsz24.svg";
+
+export default function GameDescriptionModal({
+  disableActionRef,
+  gameRestart,
+}) {
   const [open, setOpen] = React.useState(false);
   const helpModalBtn = React.useRef();
 
