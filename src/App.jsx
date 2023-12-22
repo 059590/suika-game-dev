@@ -346,7 +346,13 @@ function App() {
                           objectFit: "contain",
                         }}
                       />
-                      {index !== 10 && <img src={More} alt="Next fruit" style={{width: "20px"}} />}
+                      {index !== 10 && (
+                        <img
+                          src={More}
+                          alt="Next fruit"
+                          style={{ width: "20px" }}
+                        />
+                      )}
                     </>
                   );
                 })}
