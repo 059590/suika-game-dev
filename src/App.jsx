@@ -335,9 +335,15 @@ function App() {
                 </h2>
                 {FRUITS_BASE.map((fruit, index) => {
                   return (
-                    <>
+                    <div
+                      key={index}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
                       <img
-                        key={index}
                         src={`${fruit.name}.png`}
                         alt="Preview fruit"
                         style={{
@@ -353,7 +359,7 @@ function App() {
                           style={{ width: "20px" }}
                         />
                       )}
-                    </>
+                    </div>
                   );
                 })}
               </div>
