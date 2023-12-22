@@ -4,6 +4,7 @@ import { Engine, Render, World, Bodies, Body, Runner, Events } from "matter-js";
 import { FRUITS_BASE } from "./assets/javascript/fruits";
 import GameDescriptionModal from "./assets/components/gameDescriptionModal.jsx";
 import GameResultModal from "./assets/components/gameResultModal.jsx";
+import More from "/icon/expand-more-FILL0-wght400-GRAD0-opsz24.svg";
 
 function App() {
   const containerRef = useRef();
@@ -16,6 +17,9 @@ function App() {
   const intervalDisableActionRef = useRef();
   const disableActionRef = useRef(false);
   const currentFruitRef = useRef();
+
+  const prevFruitIndexRef = useRef(Math.floor(Math.random() * 5));
+  const [prevFruit, setPrevFruit] = useState(null);
 
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(
@@ -39,7 +43,7 @@ function App() {
    */
   function addFruit() {
     /**/
-    const index = Math.floor(Math.random() * 5);
+    const index = prevFruitIndexRef.current;
     /*/
     // test code
     const index = 8;
@@ -57,6 +61,11 @@ function App() {
 
     currentBodyRef.current = body;
     currentFruitRef.current = fruit;
+
+    // preview fruit
+    const prevIndex = Math.floor(Math.random() * 5);
+    setPrevFruit(FRUITS_BASE[prevIndex]);
+    prevFruitIndexRef.current = prevIndex;
 
     World.add(engineRef.current.world, body);
   }
@@ -281,8 +290,70 @@ function App() {
           gameRestart={gameRestart}
         />
       </header>
-      <div ref={containerRef}>
+
+      <div ref={containerRef} style={{ position: "relative" }}>
         <canvas ref={canvasRef} />
+        <div
+          style={{
+            width: "140px",
+            height: "820px",
+            padding: "30px 0",
+            boxSizing: "border-box",
+            textAlign: "center",
+            position: "absolute",
+            left: "620px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          {prevFruit && (
+            <>
+              <div>
+                <h2 style={{ margin: "0", color: "#159d0d" }}>다음 과일</h2>
+                <img
+                  src={`${prevFruit.name}.png`}
+                  alt="Preview fruit"
+                  style={{ width: "100px", height: "100px", objectFit: "none" }}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <h2
+                  style={{
+                    margin: "0",
+                    color: "#159d0d",
+                  }}
+                >
+                  과일 진화
+                </h2>
+                {FRUITS_BASE.map((fruit, index) => {
+                  return (
+                    <>
+                      <img
+                        key={index}
+                        src={`${fruit.name}.png`}
+                        alt="Preview fruit"
+                        style={{
+                          width: "35px",
+                          height: "35px",
+                          objectFit: "contain",
+                        }}
+                      />
+                      {index !== 10 && <img src={More} alt="Next fruit" style={{width: "20px"}} />}
+                    </>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </>
   );
