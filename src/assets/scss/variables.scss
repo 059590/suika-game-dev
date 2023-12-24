@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+// chrome browser minimum font size 10px
+// title 18pt ~ 32pt
+// body 16pt ~ 18pt
+// caption 10pt ~ 12pt
+// font size
+$font_size_xxxl: 3.2rem;
+$font_size_xxl: 2.8rem;
+$font_size_xl: 2.4rem;
+$font_size_l: 2rem;
+$font_size_m: 1.8rem;
+$font_size_s: 1.6rem;
+$font_size_xs: 1.4rem;
+$font_size_xxs: 1.2rem;
+$font_size_xxxs: 1rem;
+
+// font weight
+$font_weight_100: 100;
+$font_weight_200: 200;
+$font_weight_300: 300;
+$font_weight_400: 400;
+$font_weight_500: 500;
+$font_weight_600: 600;
+$font_weight_700: 700;
+$font_weight_800: 800;
+$font_weight_900: 900;
+
+// color
+$color_main: #f7f4c8;
+$point_color_main: #e6b143;
+$point_color_sub: #159d0d;

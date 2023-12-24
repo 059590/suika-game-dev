@@ -29,13 +29,9 @@ export default function GameDescriptionModal({
 
   return (
     <>
-      <Button
-        onClick={() => setOpen(true)}
-        disableFocusRipple={true}
-        ref={helpModalBtn}
-      >
+      <button onClick={() => setOpen(true)} ref={helpModalBtn}>
         게임 설명
-      </Button>
+      </button>
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
@@ -62,7 +58,7 @@ export default function GameDescriptionModal({
           </p>
           <ul style={{ marginTop: "16px" }}>
             <li style={{ display: "flex", alignItems: "center" }}>
-              <span> 오른쪽으로 과일 움직이기:</span>
+              <span> 오른쪽으로 과일 움직이기: 오른쪽 방향키</span>
               <img
                 src={ArrowRight}
                 alt="link icon"
@@ -70,10 +66,9 @@ export default function GameDescriptionModal({
                   width: "30px",
                 }}
               />
-              <span>오른쪽 방향키</span>
             </li>
             <li style={{ display: "flex", alignItems: "center" }}>
-              <span>왼쪽으로 과일 움직이기:</span>
+              <span>왼쪽으로 과일 움직이기: 왼쪽 방향키</span>
               <img
                 src={ArrowLeft}
                 alt="link icon"
@@ -81,10 +76,9 @@ export default function GameDescriptionModal({
                   width: "30px",
                 }}
               />
-              <span>왼쪽 방향키</span>
             </li>
             <li style={{ display: "flex", alignItems: "center" }}>
-              <span>아래로 과일 떨어뜨리기:</span>
+              <span>아래로 과일 떨어뜨리기: 스페이스바</span>
               <img
                 src={SpaceBar}
                 alt="link icon"
@@ -92,7 +86,6 @@ export default function GameDescriptionModal({
                   width: "30px",
                 }}
               />
-              <span>스페이스바</span>
             </li>
           </ul>
 
@@ -133,15 +126,15 @@ export default function GameDescriptionModal({
             </li>
           </ul>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <Button onClick={() => setOpen(false)}>계속하기</Button>
-            <Button
+            <button onClick={() => setOpen(false)}>계속하기</button>
+            <button
               onClick={() => {
                 gameRestart();
                 setOpen(false);
               }}
             >
               다시시작
-            </Button>
+            </button>
           </Typography>
         </Box>
       </Modal>

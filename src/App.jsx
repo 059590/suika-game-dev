@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { Engine, Render, World, Bodies, Body, Runner, Events } from "matter-js";
 
 import { FRUITS_BASE } from "./assets/javascript/fruits";
+
 import GameDescriptionModal from "./assets/components/gameDescriptionModal.jsx";
 import GameResultModal from "./assets/components/gameResultModal.jsx";
+
 import More from "/icon/expand-more-FILL0-wght400-GRAD0-opsz24.svg";
 
 function App() {
@@ -18,8 +20,8 @@ function App() {
   const disableActionRef = useRef(false);
   const currentFruitRef = useRef();
 
-  const prevFruitIndexRef = useRef(Math.floor(Math.random() * 5));
-  const [prevFruit, setPrevFruit] = useState(null);
+  const nextFruitIndexRef = useRef(Math.floor(Math.random() * 5));
+  const [nextFruit, setNextFruit] = useState(null);
 
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(
@@ -27,6 +29,13 @@ function App() {
   );
   const [openGameResultModal, setOpenGameResultModal] = useState(false);
   const [gameClear, setGameClear] = useState(false);
+
+  const [constraints, setConstraints] = useState();
+  const [scene, setScene] = useState();
+
+  const handleResize = () => {
+    setConstraints(containerRef.current.getBoundingClientRect());
+  };
 
   /**
    * Save score to local storage
@@ -43,7 +52,7 @@ function App() {
    */
   function addFruit() {
     /**/
-    const index = prevFruitIndexRef.current;
+    const index = nextFruitIndexRef.current;
     /*/
     // test code
     const index = 8;
@@ -64,8 +73,8 @@ function App() {
 
     // preview fruit
     const prevIndex = Math.floor(Math.random() * 5);
-    setPrevFruit(FRUITS_BASE[prevIndex]);
-    prevFruitIndexRef.current = prevIndex;
+    setNextFruit(FRUITS_BASE[prevIndex]);
+    nextFruitIndexRef.current = prevIndex;
 
     World.add(engineRef.current.world, body);
   }
@@ -109,12 +118,12 @@ function App() {
         render: { fillStyle: "#E6B143" },
       });
 
-      const leftWall = Bodies.rectangle(15, 395, 30, 790, {
+      const leftWall = Bodies.rectangle(15, 410, 30, 760, {
         isStatic: true,
         render: { fillStyle: "#E6B143" },
       });
 
-      const rightWall = Bodies.rectangle(605, 395, 30, 790, {
+      const rightWall = Bodies.rectangle(605, 410, 30, 760, {
         isStatic: true,
         render: { fillStyle: "#E6B143" },
       });
@@ -138,6 +147,11 @@ function App() {
       Runner.run(engineRef.current);
 
       addFruit();
+
+      // setConstraints(containerRef.current.getBoundingClientRect());
+      // setScene(render);
+
+      // window.addEventListener("resize", handleResize);
     }
 
     // Key operation
@@ -257,23 +271,46 @@ function App() {
     });
   }, []);
 
+  // useEffect(() => {
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   if (constraints) {
+  //     let { width, height } = constraints;
+
+  //     // Dynamically update canvas and bounds
+  //     scene.bounds.max.x = width;
+  //     scene.bounds.max.y = height;
+  //     scene.options.width = width;
+  //     scene.options.height = height;
+  //     // scene.canvas.width = width;
+  //     // scene.canvas.height = height;
+
+  //     // Dynamically update floor
+  //     const floor = scene.engine.world.bodies[0];
+
+  //     // Body.setPosition(floor, {
+  //     //   x: width / 2,
+  //     //   y: (height + 15) / 2,
+  //     // });
+
+  //     // Body.setVertices(floor, [
+  //     //   { x: 0, y: height },
+  //     //   { x: width, y: height },
+  //     //   { x: width, y: height + 15 },
+  //     //   { x: 0, y: height + 15 },
+  //     // ]);
+  //   }
+  // }, [scene, constraints]);
+
   return (
     <>
-      <header
-        style={{
-          width: "100%",
-          height: "60px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src="./base/10-watermelon.png"
-            alt="watermelon icon"
-            style={{ width: "45px", marginRight: "5px" }}
-          />
+      <header>
+        <div className="logo">
+          <img src="./base/10-watermelon.png" alt="watermelon icon" />
           <h1>수박 게임</h1>
         </div>
         <h2>최고기록 : {highScore}</h2>
@@ -291,82 +328,42 @@ function App() {
         />
       </header>
 
-      <div ref={containerRef} style={{ position: "relative" }}>
+      <main ref={containerRef}>
         <canvas ref={canvasRef} />
-        <div
-          style={{
-            width: "140px",
-            height: "820px",
-            padding: "30px 0",
-            boxSizing: "border-box",
-            textAlign: "center",
-            position: "absolute",
-            left: "620px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          {prevFruit && (
+
+        <aside>
+          {nextFruit && (
             <>
-              <div>
-                <h2 style={{ margin: "0", color: "#159d0d" }}>다음 과일</h2>
-                <img
-                  src={`${prevFruit.name}.png`}
-                  alt="Preview fruit"
-                  style={{ width: "100px", height: "100px", objectFit: "none" }}
-                />
+              <div className="nextFruit">
+                <h2>다음 과일</h2>
+                <img src={`${nextFruit.name}.png`} alt="Next fruit" />
               </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <h2
-                  style={{
-                    margin: "0",
-                    color: "#159d0d",
-                  }}
-                >
-                  과일 진화
-                </h2>
+
+              <div className="evolutionFruit">
+                <h2>과일 진화</h2>
                 {FRUITS_BASE.map((fruit, index) => {
                   return (
-                    <div
-                      key={index}
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
+                    <div key={index}>
                       <img
+                        className="evolutionFruit"
                         src={`${fruit.name}.png`}
-                        alt="Preview fruit"
-                        style={{
-                          width: "35px",
-                          height: "35px",
-                          objectFit: "contain",
-                        }}
+                        alt="Evolution fruit"
                       />
-                      {index !== 10 && (
-                        <img
-                          src={More}
-                          alt="Next fruit"
-                          style={{ width: "20px" }}
-                        />
-                      )}
+
+                      <img
+                        className="evolutionFruitIcon"
+                        src={More}
+                        alt="Evolution fruit icon"
+                        style={{ display: index === 10 ? "none" : "block" }}
+                      />
                     </div>
                   );
                 })}
               </div>
             </>
           )}
-        </div>
-      </div>
+        </aside>
+      </main>
     </>
   );
 }

@@ -1,0 +1,52 @@
+@import "./variables.scss";
+
+h1 {
+  font-size: $font_size_xl;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: $font_size_l;
+  font-weight: bold;
+}
+h3 {
+  font-size: $font_size_m;
+  font-weight: bold;
+}
+h4 {
+  font-size: $font_size_s;
+  font-weight: bold;
+}
+h5 {
+  font-size: $font_size_xs;
+  font-weight: bold;
+}
+
+p {
+  font-size: $font_size_l;
+  line-height: normal;
+}
+
+span {
+  font-size: $font_size_l;
+}
+
+a {
+  font-size: $font_size_l;
+}
+
+b {
+  font-weight: bold;
+}
+
+button {
+  font-size: $font_size_l;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  color: $point_color_sub;
+  cursor: pointer;
+  outline: none;
+}

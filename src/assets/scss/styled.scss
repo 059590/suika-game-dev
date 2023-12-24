@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+@import "./reset.scss";
+@import "./responsive.scss";
+// @import "./variables.scss";
+@import "./common.scss";
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #f7f4c8;
+}
+
+#root {
+}
+
+header {
+  max-width: 620px;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 4.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+main {
+  max-width: 720px;
+  max-height: 820px;
+  display: flex;
+  flex-direction: row-reverse;
+
+  canvas {
+    max-width: 620px;
+    max-height: 820px;
+  }
+  aside {
+    width: 100%;
+    margin-top: 3rem;
+    box-sizing: border-box;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      color: $point_color_sub;
+      line-height: 3rem;
+    }
+
+    .nextFruit {
+      margin-bottom: 1.5rem;
+
+      img {
+        width: 9.5rem;
+        height: 9.5rem;
+        object-fit: scale-down;
+      }
+    }
+
+    .evolutionFruit {
+      display: flex;
+      flex-direction: column;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .evolutionFruit {
+          width: 3.5rem;
+          height: 3.5rem;
+          object-fit: contain;
+        }
+
+        .evolutionFruitIcon {
+          width: 2rem;
+        }
+      }
+    }
+  }
+}
