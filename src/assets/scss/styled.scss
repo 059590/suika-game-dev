@@ -2,7 +2,6 @@
 
 @import "./reset.scss";
 @import "./responsive.scss";
-// @import "./variables.scss";
 @import "./common.scss";
 
 body {
@@ -36,6 +35,27 @@ header {
       width: 4.5rem;
       margin-right: 0.5rem;
     }
+
+    h1 {
+      font-size: $font_size_xxl;
+      font-weight: 900;
+      color: $point_color_sub;
+    }
+  }
+
+  .score {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      color: $color_main;
+      background-color: $point_color_sub;
+      padding: 0.1rem 0.5rem;
+    }
+
+    span {
+      font-weight: bold;
+    }
   }
 }
 
@@ -49,6 +69,7 @@ main {
     max-width: 620px;
     max-height: 820px;
   }
+
   aside {
     width: 100%;
     margin-top: 3rem;
@@ -59,12 +80,18 @@ main {
     flex-direction: column;
 
     h2 {
-      color: $point_color_sub;
-      line-height: 3rem;
+      width: 80%;
+      color: $color_main;
+      background-color: $point_color_sub;
+      margin-bottom: 0.5rem;
+      padding: 0.1rem 0.5rem;
     }
 
     .nextFruit {
       margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       img {
         width: 9.5rem;
@@ -76,6 +103,7 @@ main {
     .evolutionFruit {
       display: flex;
       flex-direction: column;
+      align-items: center;
 
       div {
         display: flex;
@@ -93,5 +121,93 @@ main {
         }
       }
     }
+  }
+}
+
+// Game description modal style
+.description {
+  text-align: center;
+  line-height: 3rem;
+
+  b {
+    background-color: $point_color_main;
+  }
+
+  .watermelon {
+    color: $color_main;
+    background-color: $point_color_sub;
+  }
+}
+
+.keyDescriptionDiv {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    line-height: normal;
+    margin-top: 0.5rem;
+    display: flex;
+
+    b {
+      background-color: $point_color_main;
+    }
+
+    img {
+      display: block;
+      width: 2rem;
+      height: 2rem;
+      background-color: $point_color_main;
+    }
+  }
+}
+
+.linkDiv {
+  margin-top: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a {
+    line-height: 3rem;
+    color: $color_main;
+    background-color: $point_color_sub;
+    display: flex;
+
+    &:first-child {
+      margin-right: 1rem;
+    }
+
+    img {
+      display: block;
+      width: 2rem;
+    }
+  }
+}
+
+.modalBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+
+  button:first-child {
+    margin-right: 1rem;
+  }
+}
+
+// Game result modal style
+.gameResultModalMsg {
+  text-align: center;
+}
+
+.gameResultModalBtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+
+  .gameContinue {
+    margin-right: 1rem;
   }
 }

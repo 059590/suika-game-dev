@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 import Link from "/icon/captive-portal-FILL0-wght400-GRAD0-opsz24.svg";
 import SpaceBar from "/icon/space-bar-FILL0-wght400-GRAD0-opsz24.svg";
@@ -51,81 +49,53 @@ export default function GameDescriptionModal({
             p: 4,
           }}
         >
-          <p>
-            수박 게임은&nbsp;<b>&quot;작은 과일&#34;</b>들을 합쳐서&nbsp;
-            <b>&quot;큰 과일&#34;</b>을 만드는 게임입니다. 아래 과일
-            조작법으로&nbsp;<b>&quot;수박&#34;</b>을 만들어 보세요!
+          <p className="description">
+            <b className="watermelon">&quot;수박 게임&#34;</b>은&nbsp;
+            <b>&quot;작은 과일&#34;</b>들을 합쳐서&nbsp;
+            <b>&quot;큰 과일&#34;</b>을 만드는 게임입니다. 아래{" "}
+            <b>&quot;과일 조작법&#34;</b>으로&nbsp;
+            <b className="watermelon">&quot;수박&#34;</b>을 만들어 보세요!
           </p>
-          <ul style={{ marginTop: "16px" }}>
-            <li style={{ display: "flex", alignItems: "center" }}>
-              <span> 오른쪽으로 과일 움직이기: 오른쪽 방향키</span>
-              <img
-                src={ArrowRight}
-                alt="link icon"
-                style={{
-                  width: "30px",
-                }}
-              />
-            </li>
-            <li style={{ display: "flex", alignItems: "center" }}>
-              <span>왼쪽으로 과일 움직이기: 왼쪽 방향키</span>
-              <img
-                src={ArrowLeft}
-                alt="link icon"
-                style={{
-                  width: "30px",
-                }}
-              />
-            </li>
-            <li style={{ display: "flex", alignItems: "center" }}>
-              <span>아래로 과일 떨어뜨리기: 스페이스바</span>
-              <img
-                src={SpaceBar}
-                alt="link icon"
-                style={{
-                  width: "30px",
-                }}
-              />
-            </li>
-          </ul>
 
-          <ul style={{ marginTop: "16px" }}>
-            <li style={{ display: "flex", alignItems: "center" }}>
-              <a
-                href="https://github.com/059590/suika-game"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Developer github link"
-              >
-                개발자: Github&nbsp;
-              </a>
-              <img
-                src={Link}
-                alt="link icon"
-                style={{
-                  width: "20px",
-                }}
-              />
-            </li>
-            <li style={{ display: "flex", alignItems: "center" }}>
-              <a
-                href="https://suika-game.app/ko"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Suika game"
-              >
-                원작: Suika Game&nbsp;
-              </a>
-              <img
-                src={Link}
-                alt="link icon"
-                style={{
-                  width: "20px",
-                }}
-              />
-            </li>
-          </ul>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <div className="keyDescriptionDiv">
+            <span>
+              <b>&quot;오른쪽&#34;</b>으로 과일 움직이기:&nbsp;
+              <img src={ArrowRight} alt="link icon" />
+            </span>
+
+            <span>
+              <b>&quot;왼쪽&#34;</b>으로 과일 움직이기:&nbsp;
+              <img src={ArrowLeft} alt="link icon" />
+            </span>
+
+            <span>
+              <b>&quot;아래&#34;</b>로 과일 떨어뜨리기:&nbsp;
+              <img src={SpaceBar} alt="link icon" />
+            </span>
+          </div>
+
+          <div className="linkDiv">
+            <a
+              href="https://github.com/059590/suika-game"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Developer github link"
+            >
+              개발자: Github&nbsp;
+              <img src={Link} alt="Link icon" />
+            </a>
+            <a
+              href="https://suika-game.app/ko"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Suika game"
+            >
+              원작: Suika Game&nbsp;
+              <img src={Link} alt="Link icon" />
+            </a>
+          </div>
+
+          <div className="modalBtn">
             <button onClick={() => setOpen(false)}>계속하기</button>
             <button
               onClick={() => {
@@ -135,7 +105,7 @@ export default function GameDescriptionModal({
             >
               다시시작
             </button>
-          </Typography>
+          </div>
         </Box>
       </Modal>
     </>

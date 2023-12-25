@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
 
 import confetti from "canvas-confetti";
 
@@ -89,19 +87,29 @@ export default function GameResultModal({
           p: 4,
         }}
       >
-        <h2 style={gameClear ? { color: "green" } : { color: "red" }}>
-          {gameClear ? "🎉수박! 축하합니다!!~🎉" : "🥲수박! 실패...🥲"}
-        </h2>
-        {gameClear && (
-          <Button onClick={() => setOpenResultModal(false)}>계속하기</Button>
-        )}
-        <Button
-          onClick={() => {
-            gameRestart();
-          }}
+        <h1
+          className="gameResultModalMsg"
+          style={{ color: gameClear ? "#159d0d" : "#e6b143" }}
         >
-          다시시작
-        </Button>
+          {gameClear ? "🎉수박! 축하합니다!!~🎉" : "🥲수박! 실패...🥲"}
+        </h1>
+        <div className="gameResultModalBtn">
+          {gameClear && (
+            <button
+              className="gameContinue"
+              onClick={() => setOpenResultModal(false)}
+            >
+              계속하기
+            </button>
+          )}
+          <button
+            onClick={() => {
+              gameRestart();
+            }}
+          >
+            다시시작
+          </button>
+        </div>
       </Box>
     </Modal>
   );

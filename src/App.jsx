@@ -313,8 +313,14 @@ function App() {
           <img src="./base/10-watermelon.png" alt="watermelon icon" />
           <h1>수박 게임</h1>
         </div>
-        <h2>최고기록 : {highScore}</h2>
-        <h2>점수 : {score}</h2>
+        <div className="score">
+          <h2>최고기록:</h2>
+          <span>&nbsp;{highScore}</span>
+        </div>
+        <div className="score">
+          <h2>점수:</h2>
+          <span>&nbsp;{score}</span>
+        </div>
         <GameDescriptionModal
           disableActionRef={disableActionRef}
           gameRestart={gameRestart}
