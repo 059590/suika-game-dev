@@ -18,10 +18,11 @@ body {
 }
 
 #root {
+  
 }
 
 header {
-  max-width: 620px;
+  max-width: 62rem;
   height: 6rem;
   display: flex;
   align-items: center;
@@ -60,14 +61,14 @@ header {
 }
 
 main {
-  max-width: 720px;
-  max-height: 820px;
+  max-width: 72rem;
+  max-height: 82rem;
   display: flex;
   flex-direction: row-reverse;
 
   canvas {
-    max-width: 620px;
-    max-height: 820px;
+    max-width: 62rem;
+    max-height: 82rem;
   }
 
   aside {
