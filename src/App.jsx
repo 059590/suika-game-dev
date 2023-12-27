@@ -6,7 +6,7 @@ import { FRUITS_BASE } from "./assets/javascript/fruits";
 import GameDescriptionModal from "./assets/components/gameDescriptionModal.jsx";
 import GameResultModal from "./assets/components/gameResultModal.jsx";
 
-import More from "/icon/expand-more-FILL0-wght400-GRAD0-opsz24.svg";
+import More from "/icon/chevron-right-FILL0-wght400-GRAD0-opsz24.svg";
 
 function App() {
   const containerRef = useRef();
@@ -29,13 +29,6 @@ function App() {
   );
   const [openGameResultModal, setOpenGameResultModal] = useState(false);
   const [gameClear, setGameClear] = useState(false);
-
-  const [constraints, setConstraints] = useState();
-  const [scene, setScene] = useState();
-
-  const handleResize = () => {
-    setConstraints(containerRef.current.getBoundingClientRect());
-  };
 
   /**
    * Save score to local storage
@@ -147,11 +140,6 @@ function App() {
       Runner.run(engineRef.current);
 
       addFruit();
-
-      // setConstraints(containerRef.current.getBoundingClientRect());
-      // setScene(render);
-
-      // window.addEventListener("resize", handleResize);
     }
 
     // Key operation
@@ -271,87 +259,50 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (constraints) {
-  //     let { width, height } = constraints;
-
-  //     // Dynamically update canvas and bounds
-  //     scene.bounds.max.x = width;
-  //     scene.bounds.max.y = height;
-  //     scene.options.width = width;
-  //     scene.options.height = height;
-  //     // scene.canvas.width = width;
-  //     // scene.canvas.height = height;
-
-  //     // Dynamically update floor
-  //     const floor = scene.engine.world.bodies[0];
-
-  //     // Body.setPosition(floor, {
-  //     //   x: width / 2,
-  //     //   y: (height + 15) / 2,
-  //     // });
-
-  //     // Body.setVertices(floor, [
-  //     //   { x: 0, y: height },
-  //     //   { x: width, y: height },
-  //     //   { x: width, y: height + 15 },
-  //     //   { x: 0, y: height + 15 },
-  //     // ]);
-  //   }
-  // }, [scene, constraints]);
-
   return (
     <>
-      <header>
-        <div className="logo">
-          <img src="./base/10-watermelon.png" alt="watermelon icon" />
-          <h1>수박 게임</h1>
-        </div>
-        <div className="score">
-          <h2>최고기록:</h2>
-          <span>&nbsp;{highScore}</span>
-        </div>
-        <div className="score">
-          <h2>점수:</h2>
-          <span>&nbsp;{score}</span>
-        </div>
-        <GameDescriptionModal
-          disableActionRef={disableActionRef}
-          gameRestart={gameRestart}
-        />
-        <GameResultModal
-          openResultModal={openGameResultModal}
-          setOpenResultModal={setOpenGameResultModal}
-          disableActionRef={disableActionRef}
-          gameClear={gameClear}
-          gameRestart={gameRestart}
-        />
-      </header>
+      <main ref={containerRef} className="hi">
+        <header>
+          <div className="logo">
+            <img src="./base/10-watermelon.png" alt="watermelon icon" />
+            <h1>수박 게임</h1>
+          </div>
+          <div className="score">
+            <h2>최고기록:</h2>
+            <span>&nbsp;{highScore}</span>
+          </div>
+          <div className="score">
+            <h2>점수:</h2>
+            <span>&nbsp;{score}</span>
+          </div>
+          <GameDescriptionModal
+            disableActionRef={disableActionRef}
+            gameRestart={gameRestart}
+          />
+          <GameResultModal
+            openResultModal={openGameResultModal}
+            setOpenResultModal={setOpenGameResultModal}
+            disableActionRef={disableActionRef}
+            gameClear={gameClear}
+            gameRestart={gameRestart}
+          />
+        </header>
 
-      <main ref={containerRef}>
-        <canvas ref={canvasRef} />
-
-        <aside>
+        <section>
           {nextFruit && (
             <>
               <div className="nextFruit">
-                <h2>다음 과일</h2>
+                <h2>다음 과일:</h2>
                 <img src={`${nextFruit.name}.png`} alt="Next fruit" />
               </div>
 
               <div className="evolutionFruit">
-                <h2>과일 진화</h2>
+                <h2>과일 진화:</h2>
                 {FRUITS_BASE.map((fruit, index) => {
                   return (
                     <div key={index}>
                       <img
-                        className="evolutionFruit"
+                        className="evolutionFruitImg"
                         src={`${fruit.name}.png`}
                         alt="Evolution fruit"
                       />
@@ -368,7 +319,8 @@ function App() {
               </div>
             </>
           )}
-        </aside>
+        </section>
+        <canvas ref={canvasRef} />
       </main>
     </>
   );

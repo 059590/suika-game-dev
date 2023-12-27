@@ -18,110 +18,104 @@ body {
 }
 
 #root {
-  
-}
-
-header {
-  max-width: 62rem;
-  height: 6rem;
+  width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-
-  .logo {
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 4.5rem;
-      margin-right: 0.5rem;
-    }
-
-    h1 {
-      font-size: $font_size_xxl;
-      font-weight: 900;
-      color: $point_color_sub;
-    }
-  }
-
-  .score {
-    display: flex;
-    align-items: center;
-
-    h2 {
-      color: $color_main;
-      background-color: $point_color_sub;
-      padding: 0.1rem 0.5rem;
-    }
-
-    span {
-      font-weight: bold;
-    }
-  }
 }
 
 main {
-  max-width: 72rem;
-  max-height: 82rem;
+  width: 65vh;
+  min-width: 370px;
+
+  padding: 20px;
+  box-sizing: border-box;
+
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
 
-  canvas {
-    max-width: 62rem;
-    max-height: 82rem;
-  }
-
-  aside {
+  header {
     width: 100%;
-    margin-top: 3rem;
-    box-sizing: border-box;
-    text-align: center;
-
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 
-    h2 {
-      width: 80%;
-      color: $color_main;
-      background-color: $point_color_sub;
-      margin-bottom: 0.5rem;
-      padding: 0.1rem 0.5rem;
-    }
-
-    .nextFruit {
-      margin-bottom: 1.5rem;
+    .logo {
       display: flex;
-      flex-direction: column;
       align-items: center;
 
       img {
-        width: 9.5rem;
-        height: 9.5rem;
-        object-fit: scale-down;
+        width: 4.5rem;
+        margin-right: 0.5rem;
+      }
+
+      h1 {
+        font-size: $font_size_xxl;
+        font-weight: 900;
+        color: $point_color_sub;
+      }
+    }
+
+    .score {
+      display: flex;
+      align-items: center;
+
+      h2 {
+        color: $color_main;
+        background-color: $point_color_sub;
+        padding: 0.1rem 0.5rem;
+      }
+
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  section {
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      color: $color_main;
+      margin-right: 0.5rem;
+      background-color: $point_color_sub;
+    }
+
+    .nextFruit {
+      display: flex;
+      margin-right: 2rem;
+
+      img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
       }
     }
 
     .evolutionFruit {
       display: flex;
-      flex-direction: column;
-      align-items: center;
 
       div {
         display: flex;
-        flex-direction: column;
-        align-items: center;
 
-        .evolutionFruit {
-          width: 3.5rem;
-          height: 3.5rem;
+        .evolutionFruitImg {
+          width: 1.5rem;
+          height: 1.5rem;
           object-fit: contain;
         }
 
         .evolutionFruitIcon {
-          width: 2rem;
+          width: 1rem;
         }
       }
     }
+  }
+
+  canvas {
+    width: 100%;
   }
 }
 

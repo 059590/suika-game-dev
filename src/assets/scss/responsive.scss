@@ -1,58 +1,70 @@
 @charset "utf-8";
 
-$width-breakpoint-mobile: 335px;
-$height-breakpoint-mobile: 335px;
+$width-breakpoint-small: 481px;
+$height-breakpoint-small: 650px;
 
-$width-breakpoint-tablet: 758px;
-$height-breakpoint-tablet: 758px;
+$width-breakpoint-medium: 769px;
+$height-breakpoint-medium: 750px;
 
-$width-breakpoint-desktop: 1024px;
-$height-breakpoint-desktop: 1024px;
+$width-breakpoint-large: 1280px;
+$height-breakpoint-large: 850px;
 
-@mixin mobile {
-  @media (max-width: #{$width-breakpoint-tablet - 1px}) {
+@mixin small {
+  @media (max-width: #{$width-breakpoint-small - 1px}) {
     @content;
   }
 }
 
-@mixin tablet {
-  @media (min-width: #{$width-breakpoint-tablet}) and (max-width: #{$width-breakpoint-desktop - 1px}) {
+@mixin small-height {
+  @media (max-height: #{$height-breakpoint-small - 1px}) and (min-width: #{$width-breakpoint-small}) {
     @content;
   }
 }
 
-@mixin tablet-desktop {
-  @media (min-width: #{$width-breakpoint-tablet}) {
+@mixin medium {
+  @media ((min-width: #{$width-breakpoint-small}) and (max-width: #{$width-breakpoint-large - 1px})) {
     @content;
   }
 }
 
-@mixin tablet-mobile {
-  @media (max-width: #{$width-breakpoint-desktop - 1px}) {
+@mixin medium-height {
+  @media ((min-height: #{$height-breakpoint-small}) and (max-height: #{$height-breakpoint-large - 1px})) and (min-width: #{$width-breakpoint-large}) {
     @content;
   }
 }
 
-@mixin desktop {
-  @media (min-width: #{$width-breakpoint-desktop}) {
+@mixin large {
+  @media (min-width: #{$width-breakpoint-large}) and (min-height: #{$height-breakpoint-large}) {
     @content;
   }
 }
 
-@include desktop {
+@include small() {
+  :root {
+    font-size: 6px;
+  }
+}
+
+@include medium {
+  :root {
+    font-size: 8px;
+  }
+}
+
+@include large {
   :root {
     font-size: 10px; // 10px === 1rem
   }
 }
 
-@include tablet {
+@include small-height {
   :root {
-    font-size: 5px;
+    font-size: 6px; // 10px === 1rem
   }
 }
 
-@include mobile {
+@include medium-height {
   :root {
-    font-size: 5px;
+    font-size: 8px; // 10px === 1rem
   }
 }
