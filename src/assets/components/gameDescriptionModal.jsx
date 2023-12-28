@@ -9,6 +9,9 @@ import SpaceBar from "/icon/space-bar-FILL0-wght400-GRAD0-opsz24.svg";
 import ArrowLeft from "/icon/arrow-left-FILL0-wght400-GRAD0-opsz24.svg";
 import ArrowRight from "/icon/arrow-right-FILL0-wght400-GRAD0-opsz24.svg";
 
+import { FRUITS_BASE } from "../javascript/fruits";
+import More from "/icon/chevron-right-FILL0-wght400-GRAD0-opsz24.svg";
+
 export default function GameDescriptionModal({
   disableActionRef,
   gameRestart,
@@ -43,7 +46,7 @@ export default function GameDescriptionModal({
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: "40rem",
             bgcolor: "#F7F4C8",
             border: "5px solid #E6B143",
             p: 4,
@@ -52,7 +55,28 @@ export default function GameDescriptionModal({
           <p className="description">
             <b className="watermelon">&quot;수박 게임&#34;</b>은&nbsp;
             <b>&quot;작은 과일&#34;</b>들을 합쳐서&nbsp;
-            <b>&quot;큰 과일&#34;</b>을 만드는 게임입니다. 아래{" "}
+            <b>&quot;큰 과일&#34;</b>을 만드는 게임입니다.
+            <div className="evolutionFruit">
+              {FRUITS_BASE.map((fruit, index) => {
+                return (
+                  <div key={index}>
+                    <img
+                      className="evolutionFruitImg"
+                      src={`${fruit.name}.png`}
+                      alt="Evolution fruit"
+                    />
+
+                    <img
+                      className="evolutionFruitIcon"
+                      src={More}
+                      alt="Evolution fruit icon"
+                      style={{ display: index === 10 ? "none" : "block" }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+            아래
             <b>&quot;과일 조작법&#34;</b>으로&nbsp;
             <b className="watermelon">&quot;수박&#34;</b>을 만들어 보세요!
           </p>

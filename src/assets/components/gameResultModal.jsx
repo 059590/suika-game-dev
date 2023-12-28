@@ -81,7 +81,7 @@ export default function GameResultModal({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 400,
+          width: "40rem",
           bgcolor: "#F7F4C8",
           border: "5px solid #E6B143",
           p: 4,

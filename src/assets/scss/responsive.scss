@@ -1,13 +1,13 @@
 @charset "utf-8";
 
-$width-breakpoint-small: 481px;
-$height-breakpoint-small: 650px;
+$width-breakpoint-small: 450px;
+$height-breakpoint-small: 670px;
 
-$width-breakpoint-medium: 769px;
-$height-breakpoint-medium: 750px;
+$width-breakpoint-medium: 500px;
+$height-breakpoint-medium: 700px;
 
-$width-breakpoint-large: 1280px;
-$height-breakpoint-large: 850px;
+$width-breakpoint-large: 550px;
+$height-breakpoint-large: 820px;
 
 @mixin small {
   @media (max-width: #{$width-breakpoint-small - 1px}) {

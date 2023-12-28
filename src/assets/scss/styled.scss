@@ -20,6 +20,7 @@ body {
 #root {
   width: 100%;
   display: flex;
+
   justify-content: center;
   align-items: center;
 }
@@ -55,6 +56,29 @@ main {
         color: $point_color_sub;
       }
     }
+  }
+
+  section {
+    width: 100%;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      color: $color_main;
+      margin-right: 0.5rem;
+      background-color: $point_color_sub;
+    }
+
+    .nextFruit {
+      display: flex;
+
+      img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+      }
+    }
 
     .score {
       display: flex;
@@ -72,48 +96,6 @@ main {
     }
   }
 
-  section {
-    width: 100%;
-    margin: 1rem 0;
-    display: flex;
-    justify-content: space-between;
-
-    h2 {
-      color: $color_main;
-      margin-right: 0.5rem;
-      background-color: $point_color_sub;
-    }
-
-    .nextFruit {
-      display: flex;
-      margin-right: 2rem;
-
-      img {
-        width: 1.5rem;
-        height: 1.5rem;
-        object-fit: contain;
-      }
-    }
-
-    .evolutionFruit {
-      display: flex;
-
-      div {
-        display: flex;
-
-        .evolutionFruitImg {
-          width: 1.5rem;
-          height: 1.5rem;
-          object-fit: contain;
-        }
-
-        .evolutionFruitIcon {
-          width: 1rem;
-        }
-      }
-    }
-  }
-
   canvas {
     width: 100%;
   }
@@ -123,6 +105,26 @@ main {
 .description {
   text-align: center;
   line-height: 3rem;
+
+  .evolutionFruit {
+    display: flex;
+    justify-content: center;
+
+    div {
+      display: flex;
+      margin: 1rem 0;
+
+      .evolutionFruitImg {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+      }
+
+      .evolutionFruitIcon {
+        width: 1rem;
+      }
+    }
+  }
 
   b {
     background-color: $point_color_main;

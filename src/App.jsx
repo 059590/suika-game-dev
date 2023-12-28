@@ -6,8 +6,6 @@ import { FRUITS_BASE } from "./assets/javascript/fruits";
 import GameDescriptionModal from "./assets/components/gameDescriptionModal.jsx";
 import GameResultModal from "./assets/components/gameResultModal.jsx";
 
-import More from "/icon/chevron-right-FILL0-wght400-GRAD0-opsz24.svg";
-
 function App() {
   const containerRef = useRef();
   const canvasRef = useRef();
@@ -267,14 +265,7 @@ function App() {
             <img src="./base/10-watermelon.png" alt="watermelon icon" />
             <h1>수박 게임</h1>
           </div>
-          <div className="score">
-            <h2>최고기록:</h2>
-            <span>&nbsp;{highScore}</span>
-          </div>
-          <div className="score">
-            <h2>점수:</h2>
-            <span>&nbsp;{score}</span>
-          </div>
+
           <GameDescriptionModal
             disableActionRef={disableActionRef}
             gameRestart={gameRestart}
@@ -289,33 +280,19 @@ function App() {
         </header>
 
         <section>
+          <div className="score">
+            <h2>최고기록:</h2>
+            <span>&nbsp;{highScore}</span>
+          </div>
+          <div className="score">
+            <h2>점수:</h2>
+            <span>&nbsp;{score}</span>
+          </div>
           {nextFruit && (
             <>
               <div className="nextFruit">
                 <h2>다음 과일:</h2>
                 <img src={`${nextFruit.name}.png`} alt="Next fruit" />
-              </div>
-
-              <div className="evolutionFruit">
-                <h2>과일 진화:</h2>
-                {FRUITS_BASE.map((fruit, index) => {
-                  return (
-                    <div key={index}>
-                      <img
-                        className="evolutionFruitImg"
-                        src={`${fruit.name}.png`}
-                        alt="Evolution fruit"
-                      />
-
-                      <img
-                        className="evolutionFruitIcon"
-                        src={More}
-                        alt="Evolution fruit icon"
-                        style={{ display: index === 10 ? "none" : "block" }}
-                      />
-                    </div>
-                  );
-                })}
               </div>
             </>
           )}
