@@ -61,37 +61,31 @@ main {
   section {
     width: 100%;
     margin: 1rem 0;
+
     display: flex;
     justify-content: space-between;
 
     h2 {
       color: $color_main;
-      margin-right: 0.5rem;
       background-color: $point_color_sub;
+
+      margin-right: 0.5rem;
+      padding: 0.1rem 0.5rem;
     }
 
+    .score,
     .nextFruit {
       display: flex;
+      align-items: center;
+
+      span {
+        font-weight: bold;
+      }
 
       img {
         width: 3rem;
         height: 3rem;
         object-fit: contain;
-      }
-    }
-
-    .score {
-      display: flex;
-      align-items: center;
-
-      h2 {
-        color: $color_main;
-        background-color: $point_color_sub;
-        padding: 0.1rem 0.5rem;
-      }
-
-      span {
-        font-weight: bold;
       }
     }
   }
@@ -102,6 +96,10 @@ main {
 }
 
 // Game description modal style
+.descriptionBtn {
+  font-size: $font_size_xs;
+}
+
 .description {
   text-align: center;
   line-height: 3rem;

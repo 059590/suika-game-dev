@@ -30,7 +30,11 @@ export default function GameDescriptionModal({
 
   return (
     <>
-      <button onClick={() => setOpen(true)} ref={helpModalBtn}>
+      <button
+        className="descriptionBtn"
+        onClick={() => setOpen(true)}
+        ref={helpModalBtn}
+      >
         게임 설명
       </button>
       <Modal

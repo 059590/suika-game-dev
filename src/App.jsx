@@ -270,6 +270,7 @@ function App() {
             disableActionRef={disableActionRef}
             gameRestart={gameRestart}
           />
+
           <GameResultModal
             openResultModal={openGameResultModal}
             setOpenResultModal={setOpenGameResultModal}
