@@ -65,14 +65,6 @@ main {
     display: flex;
     justify-content: space-between;
 
-    h2 {
-      color: $color_main;
-      background-color: $point_color_sub;
-
-      margin-right: 0.5rem;
-      padding: 0.1rem 0.5rem;
-    }
-
     .score,
     .nextFruit {
       display: flex;
@@ -103,34 +95,25 @@ main {
 .description {
   text-align: center;
   line-height: 3rem;
+}
 
-  .evolutionFruit {
+.evolutionFruit {
+  display: flex;
+  justify-content: center;
+  margin: 0.3rem 0 1rem;
+
+  div {
     display: flex;
-    justify-content: center;
 
-    div {
-      display: flex;
-      margin: 1rem 0;
-
-      .evolutionFruitImg {
-        width: 3rem;
-        height: 3rem;
-        object-fit: contain;
-      }
-
-      .evolutionFruitIcon {
-        width: 1rem;
-      }
+    .evolutionFruitImg {
+      width: 3rem;
+      height: 3rem;
+      object-fit: contain;
     }
-  }
 
-  b {
-    background-color: $point_color_main;
-  }
-
-  .watermelon {
-    color: $color_main;
-    background-color: $point_color_sub;
+    .evolutionFruitIcon {
+      width: 1rem;
+    }
   }
 }
 
@@ -146,15 +129,11 @@ main {
     margin-top: 0.5rem;
     display: flex;
 
-    b {
-      background-color: $point_color_main;
-    }
-
     img {
       display: block;
       width: 2rem;
       height: 2rem;
-      background-color: $point_color_main;
+      background-color: $point_color_sub;
     }
   }
 }
@@ -167,17 +146,10 @@ main {
 
   a {
     line-height: 3rem;
-    color: $color_main;
-    background-color: $point_color_sub;
-    display: flex;
+    color: $point_color_sub;
 
     &:first-child {
       margin-right: 1rem;
-    }
-
-    img {
-      display: block;
-      width: 2rem;
     }
   }
 }

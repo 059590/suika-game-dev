@@ -1,13 +1,10 @@
 @charset "utf-8";
 
-$width-breakpoint-small: 450px;
-$height-breakpoint-small: 670px;
+$width-breakpoint-small: 400px;
+$height-breakpoint-small: 650px;
 
 $width-breakpoint-medium: 500px;
-$height-breakpoint-medium: 700px;
-
-$width-breakpoint-large: 550px;
-$height-breakpoint-large: 820px;
+$height-breakpoint-medium: 800px;
 
 @mixin small {
   @media (max-width: #{$width-breakpoint-small - 1px}) {
@@ -22,19 +19,19 @@ $height-breakpoint-large: 820px;
 }
 
 @mixin medium {
-  @media ((min-width: #{$width-breakpoint-small}) and (max-width: #{$width-breakpoint-large - 1px})) {
+  @media ((min-width: #{$width-breakpoint-small}) and (max-width: #{$width-breakpoint-medium - 1px})) {
     @content;
   }
 }
 
 @mixin medium-height {
-  @media ((min-height: #{$height-breakpoint-small}) and (max-height: #{$height-breakpoint-large - 1px})) and (min-width: #{$width-breakpoint-large}) {
+  @media ((min-height: #{$height-breakpoint-small}) and (max-height: #{$height-breakpoint-medium - 1px})) and (min-width: #{$width-breakpoint-medium}) {
     @content;
   }
 }
 
 @mixin large {
-  @media (min-width: #{$width-breakpoint-large}) and (min-height: #{$height-breakpoint-large}) {
+  @media (min-width: #{$width-breakpoint-medium}) and (min-height: #{$height-breakpoint-medium}) {
     @content;
   }
 }
@@ -53,18 +50,18 @@ $height-breakpoint-large: 820px;
 
 @include large {
   :root {
-    font-size: 10px; // 10px === 1rem
+    font-size: 10px;
   }
 }
 
 @include small-height {
   :root {
-    font-size: 6px; // 10px === 1rem
+    font-size: 6px;
   }
 }
 
 @include medium-height {
   :root {
-    font-size: 8px; // 10px === 1rem
+    font-size: 8px;
   }
 }

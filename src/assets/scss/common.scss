@@ -8,6 +8,11 @@ h1 {
 h2 {
   font-size: $font_size_l;
   font-weight: bold;
+
+  color: $color_main;
+  background-color: $point_color_main;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.5rem;
 }
 
 h3 {
@@ -26,12 +31,12 @@ h5 {
 }
 
 p {
-  font-size: $font_size_l;
+  font-size: $font_size_m;
   line-height: normal;
 }
 
 span {
-  font-size: $font_size_l;
+  font-size: $font_size_m;
 }
 
 a {
@@ -40,16 +45,18 @@ a {
 
 b {
   font-weight: bold;
+  color: $color_main;
+  background-color: $point_color_sub;
 }
 
 button {
-  font-size: $font_size_l;
+  font-size: $font_size_m;
   font-weight: bold;
   padding: 0.1rem 0.5rem;
   margin: 0;
   border: none;
   background: $point_color_main;
-  color: black;
+  color: $color_main;
   cursor: pointer;
   outline: none;
 
