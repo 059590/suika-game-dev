@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 
-import Link from "/icon/captive-portal-FILL0-wght400-GRAD0-opsz24.svg";
 import SpaceBar from "/icon/space-bar-FILL0-wght400-GRAD0-opsz24.svg";
 import ArrowLeft from "/icon/arrow-left-FILL0-wght400-GRAD0-opsz24.svg";
 import ArrowRight from "/icon/arrow-right-FILL0-wght400-GRAD0-opsz24.svg";
@@ -57,29 +56,31 @@ export default function GameDescriptionModal({
           }}
         >
           <p className="description">
-            <b className="watermelon">&quot;수박 게임&#34;</b>은&nbsp;
+            <b>&quot;수박 게임&#34;</b>은&nbsp;
             <b>&quot;작은 과일&#34;</b>들을 합쳐서&nbsp;
             <b>&quot;큰 과일&#34;</b>을 만드는 게임입니다.
-            <div className="evolutionFruit">
-              {FRUITS_BASE.map((fruit, index) => {
-                return (
-                  <div key={index}>
-                    <img
-                      className="evolutionFruitImg"
-                      src={`${fruit.name}.png`}
-                      alt="Evolution fruit"
-                    />
+          </p>
+          <div className="evolutionFruit">
+            {FRUITS_BASE.map((fruit, index) => {
+              return (
+                <div key={index}>
+                  <img
+                    className="evolutionFruitImg"
+                    src={`${fruit.name}.png`}
+                    alt="Evolution fruit"
+                  />
 
-                    <img
-                      className="evolutionFruitIcon"
-                      src={More}
-                      alt="Evolution fruit icon"
-                      style={{ display: index === 10 ? "none" : "block" }}
-                    />
-                  </div>
-                );
-              })}
-            </div>
+                  <img
+                    className="evolutionFruitIcon"
+                    src={More}
+                    alt="Evolution fruit icon"
+                    style={{ display: index === 10 ? "none" : "block" }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <p className="description">
             아래
             <b>&quot;과일 조작법&#34;</b>으로&nbsp;
             <b className="watermelon">&quot;수박&#34;</b>을 만들어 보세요!
@@ -87,17 +88,17 @@ export default function GameDescriptionModal({
 
           <div className="keyDescriptionDiv">
             <span>
-              <b>&quot;오른쪽&#34;</b>으로 과일 움직이기:&nbsp;
+              <b>&quot;오른쪽&#34;</b>으로 과일 움직이기&nbsp;
               <img src={ArrowRight} alt="link icon" />
             </span>
 
             <span>
-              <b>&quot;왼쪽&#34;</b>으로 과일 움직이기:&nbsp;
+              <b>&quot;왼쪽&#34;</b>으로 과일 움직이기&nbsp;
               <img src={ArrowLeft} alt="link icon" />
             </span>
 
             <span>
-              <b>&quot;아래&#34;</b>로 과일 떨어뜨리기:&nbsp;
+              <b>&quot;아래&#34;</b>로 과일 떨어뜨리기&nbsp;
               <img src={SpaceBar} alt="link icon" />
             </span>
           </div>
@@ -107,19 +108,17 @@ export default function GameDescriptionModal({
               href="https://github.com/059590/suika-game"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Developer github link"
+              aria-label="Watermelon game github link"
             >
-              개발자: Github&nbsp;
-              <img src={Link} alt="Link icon" />
+              수박 게임 Github
             </a>
             <a
               href="https://suika-game.app/ko"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Suika game"
+              aria-label="Original suika game link"
             >
-              원작: Suika Game&nbsp;
-              <img src={Link} alt="Link icon" />
+              원작 Suika Game
             </a>
           </div>
 

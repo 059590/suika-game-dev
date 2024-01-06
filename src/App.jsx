@@ -25,8 +25,10 @@ function App() {
   const [highScore, setHighScore] = useState(
     localStorage.getItem("score") || 0
   );
-  const [openGameResultModal, setOpenGameResultModal] = useState(false);
+  const [openResultModal, setOpenResultModal] = useState(false);
   const [gameClear, setGameClear] = useState(false);
+
+  const testRef = useRef(false);
 
   /**
    * Save score to local storage
@@ -42,7 +44,7 @@ function App() {
    * Add random new fruit
    */
   function addFruit() {
-    /**/
+    /**
     const index = nextFruitIndexRef.current;
     /*/
     // test code
@@ -51,6 +53,7 @@ function App() {
     const fruit = FRUITS_BASE[index];
 
     const body = Bodies.circle(310, 90, fruit.radius, {
+      name: "newFruit",
       index: index,
       isSleeping: true,
       render: {
@@ -76,7 +79,8 @@ function App() {
   function gameRestart() {
     World.clear(engineRef.current.world, true);
     addFruit();
-    setOpenGameResultModal(false);
+    setOpenResultModal(false);
+    testRef.current = false;
     setScore(0);
   }
 
@@ -143,6 +147,7 @@ function App() {
     // Key operation
     window.onkeydown = (event) => {
       if (disableActionRef.current) return;
+      if (testRef.current) return;
 
       switch (event.code) {
         case "ArrowLeft":
@@ -181,7 +186,7 @@ function App() {
 
           intervalDisableActionRef.current = setTimeout(() => {
             addFruit();
-            disableActionRef.current = false;
+            !openResultModal && (disableActionRef.current = false);
           }, 1000);
 
           break;
@@ -232,11 +237,9 @@ function App() {
           setScore((score) => score + (index + 1) * 10);
 
           if (index === 9) {
-            clearInterval(intervalDisableActionRef.current);
-            disableActionRef.current = true;
-
             setGameClear(true);
-            setOpenGameResultModal(true);
+            setOpenResultModal(true);
+            testRef.current = true;
           }
         }
 
@@ -245,11 +248,9 @@ function App() {
           (collision.bodyA.name === "topLine" ||
             collision.bodyB.name === "topLine")
         ) {
-          clearInterval(intervalDisableActionRef.current);
-          disableActionRef.current = true;
-
+          testRef.current = true;
           setGameClear(false);
-          setOpenGameResultModal(true);
+          setOpenResultModal(true);
         }
 
         return collision.bodyA.index === collision.bodyB.index;
@@ -259,7 +260,7 @@ function App() {
 
   return (
     <>
-      <main ref={containerRef} className="hi">
+      <main ref={containerRef}>
         <header>
           <div className="logo">
             <img src="./base/10-watermelon.png" alt="watermelon icon" />
@@ -272,11 +273,12 @@ function App() {
           />
 
           <GameResultModal
-            openResultModal={openGameResultModal}
-            setOpenResultModal={setOpenGameResultModal}
+            openResultModal={openResultModal}
+            setOpenResultModal={setOpenResultModal}
             disableActionRef={disableActionRef}
             gameClear={gameClear}
             gameRestart={gameRestart}
+            testRef={testRef}
           />
         </header>
 

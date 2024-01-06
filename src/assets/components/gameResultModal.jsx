@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import Modal from "@mui/material/Modal";
@@ -12,6 +12,7 @@ export default function GameResultModal({
   disableActionRef,
   gameClear,
   gameRestart,
+  testRef,
 }) {
   /**
    * Game clear effect
@@ -59,13 +60,14 @@ export default function GameResultModal({
   /**
    * Action upon game clearance
    */
-  React.useEffect(() => {
-    if (openResultModal && gameClear) {
-      firework();
+  useEffect(() => {
+    if (openResultModal) {
+      disableActionRef.current = true;
+      gameClear && firework();
     } else {
       disableActionRef.current = false;
     }
-  }, [openResultModal]);
+  }, [openResultModal, gameClear, disableActionRef]);
 
   return (
     <Modal
@@ -91,13 +93,16 @@ export default function GameResultModal({
           className="gameResultModalMsg"
           style={{ color: gameClear ? "#159d0d" : "#e6b143" }}
         >
-          {gameClear ? "🎉수박! 축하합니다!!~🎉" : "🥲수박! 실패...🥲"}
+          {gameClear ? "🎉 수박! 축하합니다!!~ 🎉" : "🥲 수박! 실패... 🥲"}
         </h1>
         <div className="gameResultModalBtn">
           {gameClear && (
             <button
               className="gameContinue"
-              onClick={() => setOpenResultModal(false)}
+              onClick={() => {
+                setOpenResultModal(false);
+                testRef.current = false;
+              }}
             >
               계속하기
             </button>
@@ -121,4 +126,5 @@ GameResultModal.propTypes = {
   disableActionRef: PropTypes.object,
   gameClear: PropTypes.bool,
   gameRestart: PropTypes.func,
+  testRef: PropTypes.object,
 };
